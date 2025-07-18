@@ -2,10 +2,11 @@ FROM python:3.13.3
 
 COPY . /opt
 
+WORKDIR /opt
+
 EXPOSE 8080
 
-RUN pip --version
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r /opt/requirements.txt
+CMD ["python3", "app.py"]
 
-CMD ["python3","/opt/app.py" ]
