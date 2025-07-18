@@ -21,7 +21,15 @@ steps:
       '--platform', 'managed',
       '--allow-unauthenticated'
     ]
-
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: [
+      'run', 'services', 'add-iam-policy-binding', 'my-cloud-run-service',
+      '--region=us-central1',
+      '--member=allUsers',
+      '--role=roles/run.invoker'
+    ]
+    
 images:
   - 'us-central1-docker.pkg.dev/nifty-inkwell-462806-n1/deoker/app:$SHORT_SHA'
 
